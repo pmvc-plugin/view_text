@@ -2,9 +2,13 @@
 
 namespace PMVC\PlugIn\view;
 
+use PMVC\PlugIn\view\view_html;
+
+\PMVC\initPlugIn(['view_html'=>null],true);
+
 ${_INIT_CONFIG}[_CLASS] = __NAMESPACE__.'\view_text';
 
-class view_text extends ViewEngine
+class view_text extends view_html
 {
     public function init()
     {
@@ -14,18 +18,5 @@ class view_text extends ViewEngine
         \PMVC\dev(function(){
             $this['headers'] = null;
         }, 'tohtml');
-    }
-
-    private function _load($__f)
-    {
-        include($__f);
-        $this->flush();
-    }
-
-    public function process()
-    {
-        $t = $this->initTemplateHelper();
-        $file = $this->getTplFile($this['themePath']);
-        $this->_load($file);
     }
 }
